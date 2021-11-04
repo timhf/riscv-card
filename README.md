@@ -1,8 +1,8 @@
 # RISC-V Reference Card
 
-[![Build Status](https://travis-ci.com/jameslzhu/riscv-card.svg?branch=master)](https://travis-ci.com/jameslzhu/riscv-card)
-
 An unofficial reference sheet for RISC-V, the free and libre ISA from Berkeley. ([**PDF**][pdf]).
+
+Based on a [repo](https://github.com/jameslzhu/riscv-card/) by James Zhu.
 
 ## What's inside?
 
@@ -57,7 +57,7 @@ This work is adapted from the RISC-V Instruction Set Manual, available at
 [https://riscv.org/specifications/][RV] and licensed
 under the Creative Commons [CC-BY-4.0][CC] license.
 
-[pdf]: https://github.com/jameslzhu/riscv-card/blob/master/riscv-card.pdf
+[pdf]: https://github.com/timhf/riscv-card/blob/master/riscv-card.pdf
 [RV]: https://riscv.org/specifications "RISC-V spec"
 [CC]: https://creativecommons.org/licenses/by/4.0/ "CC-BY-4.0"
 [cs61c]:https://cs61c.org/
