@@ -1,5 +1,7 @@
 \section*{Standard Extensions}
 
+\ifmultiply
+
 \subsection*{RV32M Multiply Extension}
 \begin{center}
 \begin{tabular}
@@ -16,6 +18,11 @@ remu     & Remainder (U)     & R   & 0110011    & 0x7    & 0x01   & rd = rs1 \% 
 \hline
 \end{tabular}
 \end{center}
+
+\fi
+
+
+\ifatomic
 
 \subsection*{RV32A Atomic Extension}
 
@@ -64,6 +71,11 @@ amomin.w  & Atomic MIN        & R     & 0101111    & 0x2    & 0x10   & rd = min(
 \end{tabular}
 \end{center}
 
+\fi
+
+
+\iffloating
+
 \subsection*{RV32F / D Floating-Point Extensions}
 
 \begin{center}
@@ -99,6 +111,11 @@ fclass.s  & Float Classify        & *     &            &        &        & rd = 
 \hline
 \end{tabular}
 \end{center}
+
+\fi
+
+
+\ifcompressed
 
 \subsection*{RV32C Compressed Extension}
 
@@ -285,3 +302,5 @@ Floating-Point Register ABI Name    & {\tt fs0}  &  {\tt fs1} &  {\tt fa0} &  {\
 \label{registers}
 \caption{Registers shortcuts for rs1\,$'$, rs2\,$'$ and rd\,$'$}
 \end{table}
+
+\fi
