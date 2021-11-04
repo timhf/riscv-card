@@ -140,8 +140,8 @@ fclass.s  & Float Classify        & *     &            &        &        & rd = 
 
 &
 \multicolumn{4}{|c|}{funct4} &
-\multicolumn{5}{c|}{rd/rs1} &
-\multicolumn{5}{c|}{rs2} &
+\multicolumn{5}{c|}{rd/rs1 \scriptsize 5} &
+\multicolumn{5}{c|}{rs2 \scriptsize 5} &
 \multicolumn{2}{c|}{op} &
 CR-type \\
 \cline{2-17}
@@ -149,60 +149,60 @@ CR-type \\
 &
 \multicolumn{3}{|c|}{funct3} &
 \multicolumn{1}{c|}{imm} &
-\multicolumn{5}{c|}{rd/rs1} &
-\multicolumn{5}{c|}{imm} &
+\multicolumn{5}{c|}{rd/rs1 \scriptsize 5} &
+\multicolumn{5}{c|}{imm \scriptsize 5} &
 \multicolumn{2}{c|}{op} &
 CI-type \\
 \cline{2-17}
 
 &
 \multicolumn{3}{|c|}{funct3} &
-\multicolumn{6}{c|}{imm} &
-\multicolumn{5}{c|}{rs2} &
+\multicolumn{6}{c|}{imm \scriptsize 6} &
+\multicolumn{5}{c|}{rs2 \scriptsize 5} &
 \multicolumn{2}{c|}{op} &
 CSS-type \\
 \cline{2-17}
 
 &
 \multicolumn{3}{|c|}{funct3} &
-\multicolumn{8}{c|}{imm} &
-\multicolumn{3}{c|}{rd'} &
+\multicolumn{8}{c|}{imm \scriptsize 8} &
+\multicolumn{3}{c|}{rd' \scriptsize 3} &
 \multicolumn{2}{c|}{op} &
 CIW-type \\
 \cline{2-17}
 
 &
 \multicolumn{3}{|c|}{funct3} &
-\multicolumn{3}{c|}{imm} &
-\multicolumn{3}{c|}{rs1'} &
+\multicolumn{3}{c|}{imm \scriptsize 3} &
+\multicolumn{3}{c|}{rs1' \scriptsize 3} &
 \multicolumn{2}{c|}{imm} &
-\multicolumn{3}{c|}{rd'} &
+\multicolumn{3}{c|}{rd' \scriptsize 3} &
 \multicolumn{2}{c|}{op} &
 CL-type \\
 \cline{2-17}
 
 &
 \multicolumn{3}{|c|}{funct3} &
-\multicolumn{3}{c|}{imm} &
+\multicolumn{3}{c|}{im \scriptsize 3} &
 \multicolumn{3}{c|}{rd'/rs1'} &
 \multicolumn{2}{c|}{imm} &
-\multicolumn{3}{c|}{rs2'} &
+\multicolumn{3}{c|}{rs2' \scriptsize 3} &
 \multicolumn{2}{c|}{op} &
 CS-type \\
 \cline{2-17}
 
 &
 \multicolumn{3}{|c|}{funct3} &
-\multicolumn{3}{c|}{imm} &
+\multicolumn{3}{c|}{imm \scriptsize 3} &
 \multicolumn{3}{c|}{rs1'} &
-\multicolumn{5}{c|}{imm} &
+\multicolumn{5}{c|}{imm \scriptsize 5} &
 \multicolumn{2}{c|}{op} &
 CB-type \\
 \cline{2-17}
 
 &
 \multicolumn{3}{|c|}{funct3} &
-\multicolumn{11}{c|}{offset} &
+\multicolumn{11}{c|}{offset \scriptsize 11} &
 \multicolumn{2}{c|}{op} &
 CJ-type \\
 \cline{2-17}
@@ -235,6 +235,9 @@ c.sw       & Store Word              & CS  & 00     & 110       & sw rs1', (4*im
 %c.sq       & Store Quad              & CS  & 00     & 101       & sq rs1', (16*imm)(rs2')  \\
 %c.fsw      & Flt Store Word          & CS  & 00     & 111       & fsw rs1', (4*imm)(rs2')  \\
 %c.fsd      & Flt Store Double        & CS  & 00     & 101       & fsd rs1', (8*imm)(rs2')  \\
+\hline
+\multicolumn{6}{c}{For each load and store: Double word with Funct = x11, Quad with Funct = x01}\\
+\hline
 c.j        & Jump                    & CJ  & 01     & 101       & jal x0, 2*offset         \\
 c.jal      & Jump And Link           & CJ  & 01     & 001       & jal ra, 2*offset         \\
 c.jr       & Jump Reg                & CR  & 10     & 1000      & jalr x0, rs1, 0          \\
@@ -244,7 +247,7 @@ c.bnez     & Branch != 0             & CB  & 01     & 111       & bne rs', x0, 2
 c.li       & Load Immediate          & CI  & 01     & 010       & addi rd, x0, imm         \\
 c.lui      & Load Upper Imm          & CI  & 01     & 011       & lui rd, imm              \\
 c.addi     & ADD Immediate           & CI  & 01     & 000       & addi rd, rd, imm         \\
-%c.addiw    & ADD Immediate Word      & CI  & 01     & 001       & addiw rd, rd, imm        \\
+c.addiw    & ADD Immediate Word      & CI  & 01     & 001       & addiw rd, rd, imm        \\
 c.addi16sp & ADD Imm * 16 to SP      & CI  & 01     & 011       & addi sp, sp, 16*imm      \\
 c.addi4spn & ADD Imm * 4 + SP        & CIW & 00     & 000       & addi rd', sp, 4*imm      \\
 c.slli     & Shift Left Logical Imm  & CI  & 10     & 000       & slli rd, rd, imm         \\
@@ -257,10 +260,28 @@ c.and      & AND                     & CS  & 01     & 10001111  & and rd', rd', 
 c.or       & OR                      & CS  & 01     & 10001110  & or rd', rd', rs2'        \\
 c.xor      & XOR                     & CS  & 01     & 10001101  & xor rd', rd', rs2'       \\
 c.sub      & SUB                     & CS  & 01     & 10001100  & sub rd', rd', rs2'       \\
-%c.addw     & ADD Word                & CS  & 01     & 10011101  & addw rd', rd', rs2'      \\
-%c.subw     & SUB Word                & CS  & 01     & 10011100  & subw rd', rd', rs2'      \\
+c.addw     & ADD Word                & CS  & 01     & 10011101  & addw rd', rd', rs2'      \\
+c.subw     & SUB Word                & CS  & 01     & 10011100  & subw rd', rd', rs2'      \\
 c.nop      & No OPeration            & CI  & 01     & 000       & addi x0, x0, 0           \\
 c.ebreak   & Environment BREAK       & CR  & 10     & 1001      & ebreak                   \\
 \hline
 \end{tabular}
 \end{center}
+
+\begin{table}[h]
+{
+\begin{center}
+\begin{tabular}{l|c|c|c|c|c|c|c|c|}
+\cline{2-9}
+RVC Register Number  & 000 & 001 & 010 & 011 & 100 & 101 & 110 & 111
+\\ \cline{2-9}
+Integer Register Number & {\tt x8} & {\tt x9} & {\tt x10} & {\tt x11} & {\tt x12} & {\tt x13} & {\tt x14}  & {\tt x15} \\ \cline{2-9}
+Integer Register ABI Name    & {\tt s0}  &  {\tt s1} &  {\tt a0} &  {\tt a1} &  {\tt a2} &  {\tt a3} & {\tt a4}  & {\tt a5} \\ \cline{2-9}
+Floating-Point Register Number & {\tt f8} & {\tt f9} & {\tt f10} & {\tt f11} & {\tt f12} & {\tt f13} & {\tt f14}  & {\tt f15} \\ \cline{2-9}
+Floating-Point Register ABI Name    & {\tt fs0}  &  {\tt fs1} &  {\tt fa0} &  {\tt fa1} &  {\tt fa2} &  {\tt fa3} & {\tt fa4}  & {\tt fa5} \\ \cline{2-9}
+\end{tabular}
+\end{center}
+}
+\label{registers}
+\caption{Registers shortcuts for rs1\,$'$, rs2\,$'$ and rd\,$'$}
+\end{table}
